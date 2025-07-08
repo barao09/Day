@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rastreamento Internacional | Jadtranspot LTDA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background: #003366;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .title {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #003366;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0055a3;
+    }
+    .resultado {
+      margin-top: 25px;
+      display: none;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .etapas {
+      margin-top: 20px;
+      padding-left: 15px;
+    }
+    .etapas li {
+      margin: 8px 0;
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 50px;
+      padding: 20px;
+    }
+    .aviao {
+      text-align: center;
+      margin-top: 20px;
+      animation: fly 6s ease-in-out infinite;
+    }
+    @keyframes fly {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(30px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Rastreamento Internacional | Jadtranspot LTDA
+  </header>
+
+  <div class="container">
+    <div class="title">Digite seu código de rastreio</div>
+    <input type="text" id="codigo" placeholder="Ex: TY1L2NN345BJ6789PFZB" />
+    <button onclick="rastrear()">Rastrear</button>
+
+    <div class="resultado" id="resultado">
+      <h3>Dados da Encomenda</h3>
+      <p><strong>Código:</strong> TY9N0LL172BB93038FZXY</p>
+      <p><strong>Remetente:</strong> Drummond Medic LTDA<br/>
+      Manaus - AM</p>
+      <p><strong>Destinatário:</strong> Daiane Soares<br/>
+      Rua João Ribeiro, Santa Terezinha<br/>
+      São João do Ivaí - PR, 86930-000</p>
+      <p><strong>Previsão de entrega:</strong> Unidade de tratamento (PR)</p>
+
+      <h4>Etapas:</h4>
+      <ul class="etapas">
+        <li>📦 Pedido enviado ✔️</li>
+        <li>🌐 Em trânsito internacional ✔️</li>
+        <li>🇧🇷 Chegando ao Brasil ✔️</li>
+        <li>🚚 Em rota de entrega 🔰</li>
+        <li>🚥 OBJETO: unidade de tratamento Paraná PR brasil – em breve enviado para o endereço do destinatário ✔️</li>
+      </ul>
+
+      <div class="aviao">✈️ Acompanhando sua entrega...</div>
+    </div>
+  </div>
+
+  <footer>
+    🔒 Site protegido com SSL | Verificado por Google Safe Browsing | © 2025 Jadtranspot LTDA
+  </footer>
+
+  <script>
+    function rastrear() {
+      const input = document.getElementById("codigo").value.trim();
+      const resultado = document.getElementById("resultado");
+      if (input.toUpperCase() === "TY9N0LL172BB93038FZXY") {
+        resultado.style.display = "block";
+      } else {
+        alert("Código de rastreio não encontrado. Verifique se está correto.");
+      }
+    }
+  </script>
+</body>
+</html>
