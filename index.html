@@ -32,22 +32,17 @@
       margin-bottom: 20px;
       color: #003366;
     }
-    input[type="text"] {
+    input[type="text"], button {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 6px;
       font-size: 16px;
     }
     button {
-      width: 100%;
-      padding: 12px;
       background: #0066cc;
       color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
       cursor: pointer;
     }
     button:hover {
@@ -62,13 +57,6 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    .etapas {
-      margin-top: 20px;
-      padding-left: 15px;
-    }
-    .etapas li {
-      margin: 8px 0;
-    }
     footer {
       text-align: center;
       font-size: 12px;
@@ -76,15 +64,27 @@
       margin-top: 50px;
       padding: 20px;
     }
-    .aviao {
-      text-align: center;
+    .aviso {
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
       margin-top: 20px;
-      animation: fly 6s ease-in-out infinite;
+      text-align: center;
     }
-    @keyframes fly {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(30px); }
-      100% { transform: translateX(0); }
+    .botoes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .relatorio {
+      white-space: pre-wrap;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      margin-top: 20px;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -99,25 +99,54 @@
     <button onclick="rastrear()">Rastrear</button>
 
     <div class="resultado" id="resultado">
-      <h3>Dados da Encomenda</h3>
-      <p><strong>Código:</strong> TY9N0LL172BB93038FZXY</p>
-      <p><strong>Remetente:</strong> Drummond Medic LTDA<br/>
-      Manaus - AM</p>
-      <p><strong>Destinatário:</strong> Daiane Soares<br/>
-      Rua João Ribeiro, Santa Terezinha<br/>
-      São João do Ivaí - PR, 86930-000</p>
-      <p><strong>Previsão de entrega:</strong> Unidade de tratamento (PR)</p>
+      <div class="aviso">🚨 Objeto Interceptado</div>
 
-      <h4>Etapas:</h4>
-      <ul class="etapas">
-        <li>📦 Pedido enviado ✔️</li>
-        <li>🌐 Em trânsito internacional ✔️</li>
-        <li>🇧🇷 Chegando ao Brasil ✔️</li>
-        <li>🚚 Em rota de entrega 🔰</li>
-        <li>🚥 OBJETO: unidade de tratamento Paraná PR brasil – em breve enviado para o endereço do destinatário ✔️</li>
-      </ul>
+      <div class="botoes">
+        <button onclick="mostrarRelatorio()">Saiba os motivos</button>
+        <button onclick="window.open('https://www.gov.br/receitafederal', '_blank')">Suporte</button>
+      </div>
 
-      <div class="aviao">✈️ Acompanhando sua entrega...</div>
+      <div class="relatorio" id="relatorio">
+RELATÓRIO DE INTERCEPTAÇÃO DE ENCOMENDA
+RELATÓRIO DE INTERCEPTAÇÃO - FISCALIZAÇÃO FEDERAL
+Data da Interceptação: 08/07/2025
+Unidade de Triagem: Centro Operacional Internacional - PARANÁ/PR
+Código da Encomenda: TY9N0LL172BB93038FZXY
+
+Destinatário:
+Nome: Daiane Soares
+Endereço: Rua João Ribeiro, Santa Terezinha
+Cidade/Estado: São João do Ivaí - PR, 86930-000
+
+Remetente:
+Nome: Drummond Medic LTDA
+Origem: Manaus - AM
+
+Motivo da Interceptação:
+Durante o processo de fiscalização por imagem de raio-X e inspeção olfativa com auxílio de cães farejadores, foi identificado conteúdo suspeito na embalagem.
+
+Conteúdo da Encomenda:
+- 03 frascos contendo cápsulas de comprimidos de substância classificada como CONTROLADA
+- Substância de uso restrito e proibido para envio por vias postais sem autorização expressa da ANVISA
+
+Produto identificado com marcações em idioma estrangeiro e sem documentação de regularidade sanitária
+
+Ação Tomada:
+- Encomenda retida para averiguação técnica
+- Comunicação à Polícia Federal e ANVISA
+- Abertura da embalagem autorizada conforme Portaria 344/98 e Lei 11.343/06
+- Início de procedimento investigatório com rastreamento de remetente e destinatário
+
+Status Atual:
+- Encaminhado para perícia técnica especializada
+- Notificação será emitida aos envolvidos
+- Encomenda considerada em infração à legislação sanitária e penal vigente
+
+Observações:
+A tentativa de envio de substâncias de controle internacional sem autorização constitui crime sanitário, podendo ser enquadrado como tráfico internacional de entorpecentes ou medicamentos.
+
+Este relatório integra o processo de investigação em sigilo e será utilizado pelas autoridades competentes.
+      </div>
     </div>
   </div>
 
@@ -127,13 +156,20 @@
 
   <script>
     function rastrear() {
-      const input = document.getElementById("codigo").value.trim();
+      const input = document.getElementById("codigo").value.trim().toUpperCase();
       const resultado = document.getElementById("resultado");
-      if (input.toUpperCase() === "TY9N0LL172BB93038FZXY") {
+      const relatorio = document.getElementById("relatorio");
+      if (input === "TY9N0LL172BB93038FZXY") {
         resultado.style.display = "block";
+        relatorio.style.display = "none";
       } else {
         alert("Código de rastreio não encontrado. Verifique se está correto.");
       }
+    }
+
+    function mostrarRelatorio() {
+      const relatorio = document.getElementById("relatorio");
+      relatorio.style.display = "block";
     }
   </script>
 </body>
